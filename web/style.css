@@ -1,0 +1,74 @@
+/* 
+    Document   : style
+    Created on : May 3, 2013, 1:09:16 AM
+    Author     : Kanika
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body 
+{
+    background-image: url(images.gif);
+    font-family: Georgia;
+    font-size: 16px;
+    margin-top: 50px;
+}
+
+#container {
+
+  width: 1300px;
+  min-height: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #fdfdfd;
+  border: 1px solid #ccc;
+  padding: 15px;
+}
+
+#menu {
+    
+    font-family: Georgia;
+    font-size: 18px;
+    background: #fdfdfd;
+    width: 1300px;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+}
+
+
+#menu1 {
+  width: 1040px;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+}
+
+#footer {
+  width: 1040px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
+  color: #000;
+}
+
+#header {
+  width: 100%;
+}
+
+#main {
+  margin-top: 10px;
+  width: 100%;
+}
+
+input {
+  font-family: Georgia;
+  font-size: 12px;
+}
+
+.right {
+  display: inline;
+  float: right;
+}
