@@ -370,57 +370,20 @@ public void init()
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-           try {
-            // TODO add your handling code here:
-
             //WRITING DATA TO A FILE ON LOCAL MACHINE
             String data = detailsValidation();
-            if (data.equalsIgnoreCase("success")) {
-
-                String fileName = "C:\\Temp\\pass.txt";
-                File file = new File(fileName);
-                BufferedWriter bw = new BufferedWriter(new FileWriter(file));
-                bw.write(readData());
-                bw.close();
-                // CLOSED
-
-                //READING THE FILE AND SENDING TO PHP
-                String fname = "pass.txt";
-                String url = "http://kanikabhatia-photos.com/Team_File_Share/register.php?fname=" + fname;
-                HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
-                httpUrlConnection.setDoOutput(true);
-                httpUrlConnection.setRequestMethod("POST");
-                OutputStream os = httpUrlConnection.getOutputStream();
-                File fileRead = new File(fileName);
-                int bytes = (int) fileRead.length();
-                BufferedInputStream fos = new BufferedInputStream(new FileInputStream(fileName));
-                for (int j = 0; j < bytes; j++) {
-                    os.write(fos.read());
-                }
-                os.close();
-                //CLOSED
-                BufferedReader in = new BufferedReader(new InputStreamReader(httpUrlConnection.getInputStream()));
-                String s = null;
-                while ((s = in.readLine()) != null) {
-                    if (s.contains("error")) {
-                        //JOptionPane.showMessageDialog(this, "Unsucessful registration", "Registration", JOptionPane.ERROR_MESSAGE);
-                        JOptionPane.showMessageDialog(this, "Could not complete registration. \n" + " Try Again..!!", "Registration", JOptionPane.ERROR_MESSAGE);
-                    } else if (s.contains("Success")) {
-                        JOptionPane.showMessageDialog(this, "Successfully Registered!! \n login with the user id an password", "Registration", JOptionPane.INFORMATION_MESSAGE);
-
-                    }
-                }
-                in.close();
+            if(data.equalsIgnoreCase("success"))
+            {
+                data = readData();
+                String response = f.userRegistration(data);
             }
-        } catch (IOException ex) {
-            //Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         String username = jTextField1.getText();
-        String password = new String(jPasswordField2.getPassword());
+        String password = new String(jPasswordField1.getPassword());
+        System.out.println("pwd"+password);
         String result = f.userLogin(username, password);
        // if(result.equalsIgnoreCase("error"))
 //        {
