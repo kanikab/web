@@ -9,6 +9,8 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -26,6 +28,22 @@ import javax.swing.JOptionPane;
  */
 public class functions {
 
+     protected void userdata()
+    {
+         try {
+             String s, s1 = "";
+             String fileName = "C:\\Temp\\login.txt";
+             File fileRead = new File(fileName);
+             BufferedReader  fos = new BufferedReader(new FileReader(fileName));
+             while ((s = fos.readLine()) != null) {
+                s1 = s1+s;
+            }
+            // fos.readLine();
+             System.out.println("file"+s1);
+         } catch (IOException ex) {
+                 Logger.getLogger(functions.class.getName()).log(Level.SEVERE, null, ex);
+             }
+    }
     protected int userLogin(String username, String password) {
         String ret = "";
         try {
@@ -138,4 +156,6 @@ public class functions {
         }
         return retData;
     }
+    
+   
 }
