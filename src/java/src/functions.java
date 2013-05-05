@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -93,12 +94,45 @@ public class functions {
             String s = null;
             while ((s = in.readLine()) != null) {
                 if (s.contains("Error")) {
-                    retData = s;                 
+                    retData = s;
                 } else if (s.contains("Success")) {
                     retData = s;
                 }
             }
             in.close();
+        } catch (IOException ex) {
+            Logger.getLogger(functions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return retData;
+    }
+
+    protected String fileUpload(String path, String fname) {
+        String retData = "";
+        try {
+            String filePath = path;
+            String fileName = fname;
+            String url = "http://kanikabhatia-photos.com/Team_File_Share/fileUpload.php?fname=" + fileName;
+            HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
+            httpUrlConnection.setDoOutput(true);
+            httpUrlConnection.setRequestMethod("POST");
+            OutputStream os = httpUrlConnection.getOutputStream();
+            File fileRead = new File(filePath);
+            int bytes = (int) fileRead.length();
+            BufferedInputStream fos = new BufferedInputStream(new FileInputStream(filePath));
+            for (int j = 0; j < bytes; j++) {
+                os.write(fos.read());
+            }
+            os.close();
+            
+            BufferedReader in = new BufferedReader(new InputStreamReader(httpUrlConnection.getInputStream()));
+            String s = null;
+            while ((s = in.readLine()) != null) {
+                retData = s;
+            }
+            in.close();
+            
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(functions.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(functions.class.getName()).log(Level.SEVERE, null, ex);
         }

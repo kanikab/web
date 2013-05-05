@@ -1,0 +1,19 @@
+List of files
+
+Java Files
+    Validations.java
+    functions.java
+    Registration.java
+    login.java
+    home.java
+    fileUpload.java
+    
+PHP files
+    login.php
+    register.php
+    fileupload.php
+    fileretrieve.php
+    
+Images
+    sjsu.jpg (for sjsu logo)
+
