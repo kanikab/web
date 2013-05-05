@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
  */
 public class functions {
 
-    protected String userLogin(String username, String password) {
+    protected int userLogin(String username, String password) {
         String ret = "";
         try {
             // TODO add your handling code here:
@@ -41,7 +41,6 @@ public class functions {
             //READING THE FILE AND SENDING TO PHP
             String fname = "login.txt";
             String url = "http://kanikabhatia-photos.com/Team_File_Share/login.php?fname=" + fname;
-            //String url = "http://donniprateek.com/kanika.php?fname="+ fname;
             HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
             httpUrlConnection.setDoOutput(true);
             httpUrlConnection.setRequestMethod("POST");
@@ -64,7 +63,7 @@ public class functions {
         } catch (IOException ex) {
             //Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return ret;
+        return Integer.parseInt(ret);
     }
 
     protected String userRegistration(String data) {
@@ -79,7 +78,6 @@ public class functions {
             //READING THE FILE AND SENDING TO PHP
             String fname = "register.txt";
             String url = "http://kanikabhatia-photos.com/Team_File_Share/register.php?fname=" + fname;
-            //String url = "http://donniprateek.com/kanika.php?fname=" + fname;
             HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
             httpUrlConnection.setDoOutput(true);
             httpUrlConnection.setRequestMethod("POST");
@@ -94,9 +92,8 @@ public class functions {
             BufferedReader in = new BufferedReader(new InputStreamReader(httpUrlConnection.getInputStream()));
             String s = null;
             while ((s = in.readLine()) != null) {
-                if (s.contains("error")) {
-                    retData = s;
-                    
+                if (s.contains("Error")) {
+                    retData = s;                 
                 } else if (s.contains("Success")) {
                     retData = s;
                 }

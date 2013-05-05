@@ -30,14 +30,16 @@ public class Registration extends javax.swing.JFrame {
     /**
      * Creates new form Registration
      */
-     functions f = new functions();
+    functions f = new functions();
+
     public Registration() {
-       init();
+        initComponents();
     }
-public void init()
-{
-    initComponents();
-}
+
+/*    public void init() {
+        initComponents();
+    }
+*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,9 +86,19 @@ public void init()
 
         jButton1.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
         jButton1.setText("Register");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
         jButton2.setText("Home");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
         jLabel1.setText("E-Mail");
@@ -358,7 +370,7 @@ public void init()
             // TODO add your handling code here:
             //kanika
             String url = "http://www.sjsu.edu";
-             java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+            java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
         } catch (IOException ex) {
             Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -370,41 +382,52 @@ public void init()
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-            //WRITING DATA TO A FILE ON LOCAL MACHINE
-            String data = detailsValidation();
-            if(data.equalsIgnoreCase("success"))
+        //WRITING DATA TO A FILE ON LOCAL MACHINE
+        String data = detailsValidation();
+        if (data.equalsIgnoreCase("success")) {
+            data = readData();
+            String response = f.userRegistration(data);
+            if(response.contains("Error"))
             {
-                data = readData();
-                String response = f.userRegistration(data);
+                JOptionPane.showMessageDialog(this, response, "Registration", JOptionPane.ERROR_MESSAGE);
             }
+            else
+            {
+                JOptionPane.showMessageDialog(this, response, "Registration", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+                new login();
+            }
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         String username = jTextField1.getText();
         String password = new String(jPasswordField1.getPassword());
-        System.out.println("pwd"+password);
-        String result = f.userLogin(username, password);
-       // if(result.equalsIgnoreCase("error"))
-//        {
-        System.out.println("result :"+result);
-            jLabel11.setText(result);
-        //}
-        //else
-        //{
-            
-        //}
-        
+        int result = f.userLogin(username, password);
+        System.out.println("count is"+result);
+        if (result == 0) {
+            jLabel11.setText("Login Failed.");
+        }
+        else
+        {
+            dispose();
+            new home();
+            //kanika code 
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-     
-    }
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        reset();
-    }
+        dispose();
+        new Registration();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+        new home();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
