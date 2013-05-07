@@ -19,7 +19,7 @@ public class fileupload extends javax.swing.JFrame {
      * Creates new form fileupload
      */
     functions f = new functions();
-    File[] file;
+    File[] file, failupload;
 
     public fileupload() {
         setVisible(true);
@@ -43,6 +43,8 @@ public class fileupload extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jButton1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
         jButton1.setText("Choose File");
@@ -129,6 +131,7 @@ public class fileupload extends javax.swing.JFrame {
             for (int i = 0; i < file.length; i++) {
                 //test = file[i].getPath().toString() + "," + test;
                 test = file[i].getName().toString() + "," + test;
+                System.out.println(file[i].length());
                 jTextField1.setText(test);
             }
         }
@@ -151,6 +154,7 @@ public class fileupload extends javax.swing.JFrame {
             String result = f.fileUpload(path, fname);
             if (result.contains("Successful Upload")) {
                 JOptionPane.showMessageDialog(this, fname +" "+result, "Upload", JOptionPane.INFORMATION_MESSAGE);
+                file[i].delete();
                 count ++;
             } 
             else {
