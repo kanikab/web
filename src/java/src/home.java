@@ -4,7 +4,6 @@
  */
 package src;
 
-import com.sun.codemodel.JLabel;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

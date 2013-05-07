@@ -28,22 +28,7 @@ import javax.swing.JOptionPane;
  */
 public class functions {
 
-     protected void userdata()
-    {
-         try {
-             String s, s1 = "";
-             String fileName = "C:\\Temp\\login.txt";
-             File fileRead = new File(fileName);
-             BufferedReader  fos = new BufferedReader(new FileReader(fileName));
-             while ((s = fos.readLine()) != null) {
-                s1 = s1+s;
-            }
-            // fos.readLine();
-             System.out.println("file"+s1);
-         } catch (IOException ex) {
-                 Logger.getLogger(functions.class.getName()).log(Level.SEVERE, null, ex);
-             }
-    }
+    String userid = "";
     protected int userLogin(String username, String password) {
         String ret = "";
         try {
@@ -59,7 +44,7 @@ public class functions {
 
             //READING THE FILE AND SENDING TO PHP
             String fname = "login.txt";
-            String url = "http://kanikabhatia-photos.com/Team_File_Share/login.php?fname=" + fname;
+            String url = "http://kanikabhatia-photos.com/Team_File_Share/userlogin.php?fname=" + fname;
             HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
             httpUrlConnection.setDoOutput(true);
             httpUrlConnection.setRequestMethod("POST");
@@ -82,6 +67,10 @@ public class functions {
         } catch (IOException ex) {
             //Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }
+        if(Integer.parseInt(ret) != 0)
+        {
+            userid = username;
+        }
         return Integer.parseInt(ret);
     }
 
@@ -96,7 +85,8 @@ public class functions {
             // CLOSED
             //READING THE FILE AND SENDING TO PHP
             String fname = "register.txt";
-            String url = "http://kanikabhatia-photos.com/Team_File_Share/register.php?fname=" + fname;
+            //String url = "http://kanikabhatia-photos.com/Team_File_Share/register.php?fname=" + fname;
+            String url = "http://kanikabhatia-photos.com/Team_File_Share/registration1.php?fname=" + fname;
             HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
             httpUrlConnection.setDoOutput(true);
             httpUrlConnection.setRequestMethod("POST");
@@ -129,7 +119,10 @@ public class functions {
         try {
             String filePath = path;
             String fileName = fname;
-            String url = "http://kanikabhatia-photos.com/Team_File_Share/fileUpload.php?fname=" + fileName;
+            //fileName = fileName+"..."+userid;
+            //fileName = fileName+".."+"kanika";
+            //String url = "http://kanikabhatia-photos.com/Team_File_Share/uploads/fileUpload.php?fname=" + fileName;
+            String url = "http://kanikabhatia-photos.com/Team_File_Share/tempfileupload.php?fname=" + fileName;
             HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
             httpUrlConnection.setDoOutput(true);
             httpUrlConnection.setRequestMethod("POST");
@@ -146,6 +139,7 @@ public class functions {
             String s = null;
             while ((s = in.readLine()) != null) {
                 retData = s;
+                System.out.println(s);
             }
             in.close();
             

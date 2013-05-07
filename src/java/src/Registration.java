@@ -4,21 +4,9 @@
  */
 package src;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,6 +21,7 @@ public class Registration extends javax.swing.JFrame {
     functions f = new functions();
 
     public Registration() {
+        setVisible(true);
         initComponents();
     }
 
@@ -48,18 +37,8 @@ public class Registration extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton3 = new javax.swing.JButton();
-        jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -75,12 +54,82 @@ public class Registration extends javax.swing.JFrame {
         jPasswordField2 = new javax.swing.JPasswordField();
         jPasswordField3 = new javax.swing.JPasswordField();
         jButton6 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jButton3 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel3.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel3.setText("Registration");
+
+        jLabel4.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel4.setText("First Name");
+
+        jLabel5.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel5.setText("Last Name");
+
+        jLabel6.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel6.setText("E-Mail");
+
+        jLabel7.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel7.setText("Password");
+
+        jLabel8.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jLabel8.setText("Confirm Password");
+
+        jButton4.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jButton4.setText("Register");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jButton5.setText("Reset");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jTextField2.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jTextField2.setName("First name"); // NOI18N
+
+        jTextField3.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jTextField3.setName("Last Name"); // NOI18N
+
+        jTextField4.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jTextField4.setName("E-Mail"); // NOI18N
+
+        jPasswordField2.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jPasswordField2.setName("Password"); // NOI18N
+
+        jPasswordField3.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jPasswordField3.setName("Confirm Password"); // NOI18N
+
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/sjsu.jpg"))); // NOI18N
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -168,84 +217,8 @@ public class Registration extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addComponent(jButton3))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 272;
-        gridBagConstraints.ipady = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(32, 40, 0, 45);
-        jPanel1.add(jPanel2, gridBagConstraints);
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel3.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
-        jLabel3.setText("Registration");
-
-        jLabel4.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
-        jLabel4.setText("First Name");
-
-        jLabel5.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
-        jLabel5.setText("Last Name");
-
-        jLabel6.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
-        jLabel6.setText("E-Mail");
-
-        jLabel7.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
-        jLabel7.setText("Password");
-
-        jLabel8.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
-        jLabel8.setText("Confirm Password");
-
-        jButton4.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
-        jButton4.setText("Register");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
-        jButton5.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
-        jButton5.setText("Reset");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        jTextField2.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
-        jTextField2.setName("First name"); // NOI18N
-
-        jTextField3.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
-        jTextField3.setName("Last Name"); // NOI18N
-
-        jTextField4.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
-        jTextField4.setName("E-Mail"); // NOI18N
-
-        jPasswordField2.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
-        jPasswordField2.setName("Password"); // NOI18N
-
-        jPasswordField3.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
-        jPasswordField3.setName("Confirm Password"); // NOI18N
-
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/sjsu.jpg"))); // NOI18N
-        jButton6.setText("jButton6");
-        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton6MouseClicked(evt);
-            }
-        });
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -275,12 +248,17 @@ public class Registration extends javax.swing.JFrame {
                         .addGap(84, 84, 84)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(349, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -308,47 +286,16 @@ public class Registration extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(jButton5))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 322;
-        gridBagConstraints.ipady = 90;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(6, 40, 73, 45);
-        jPanel1.add(jPanel3, gridBagConstraints);
-
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/images.gif"))); // NOI18N
-        jLabel9.setText("jLabel9");
-        jLabel9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.RELATIVE;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        jPanel1.add(jLabel9, gridBagConstraints);
-
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/images.gif"))); // NOI18N
-        jLabel10.setText("jLabel10");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        jPanel1.add(jLabel10, gridBagConstraints);
+        jPanel1.add(jPanel3, new java.awt.GridBagConstraints());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 766, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 766, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,16 +334,16 @@ public class Registration extends javax.swing.JFrame {
         if (data.equalsIgnoreCase("success")) {
             data = readData();
             String response = f.userRegistration(data);
-            if(response.contains("Error"))
-            {
-                JOptionPane.showMessageDialog(this, response, "Registration", JOptionPane.ERROR_MESSAGE);
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(this, response, "Registration", JOptionPane.INFORMATION_MESSAGE);
+            //if(response.contains("Error"))
+          //  {
+            //    JOptionPane.showMessageDialog(this, response, "Registration", JOptionPane.ERROR_MESSAGE);
+            //}
+//            else
+  //          {
+                JOptionPane.showMessageDialog(this, "Confirmation Email has been sent to your account. Click on the link to activate your account", "Registration", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
                 new login();
-            }
+    //        }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -487,7 +434,6 @@ public class Registration extends javax.swing.JFrame {
     protected javax.swing.JButton jButton5;
     protected javax.swing.JButton jButton6;
     protected javax.swing.JLabel jLabel1;
-    protected javax.swing.JLabel jLabel10;
     protected javax.swing.JLabel jLabel11;
     protected javax.swing.JLabel jLabel2;
     protected javax.swing.JLabel jLabel3;
@@ -496,7 +442,6 @@ public class Registration extends javax.swing.JFrame {
     protected javax.swing.JLabel jLabel6;
     protected javax.swing.JLabel jLabel7;
     protected javax.swing.JLabel jLabel8;
-    protected javax.swing.JLabel jLabel9;
     protected javax.swing.JPanel jPanel1;
     protected javax.swing.JPanel jPanel2;
     protected javax.swing.JPanel jPanel3;

@@ -127,11 +127,12 @@ public class fileupload extends javax.swing.JFrame {
             file = fc.getSelectedFiles();
             //jTextField1.setText(file.getPath().toString());   
             for (int i = 0; i < file.length; i++) {
-                test = file[i].getPath().toString() + "," + test;
+                //test = file[i].getPath().toString() + "," + test;
+                test = file[i].getName().toString() + "," + test;
                 jTextField1.setText(test);
             }
         }
-        System.out.println("test is:" + test);
+        //System.out.println("test is:" + test);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
