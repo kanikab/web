@@ -20,7 +20,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,34 +28,19 @@ import javax.swing.JOptionPane;
 public class functions {
 
     String userid = "";
-    protected int userLogin(String username, String password) {
+    protected int userLogin(String emailid, String password) {
         String ret = "";
         try {
             // TODO add your handling code here:
 
-            //WRITING DATA TO A FILE ON LOCAL MACHINE
-            String fileName = "C:\\Temp\\login.txt";
-            File file = new File(fileName);
-            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
-            bw.write(username + ",," + password);
-            bw.close();
-            // CLOSED
-
-            //READING THE FILE AND SENDING TO PHP
+            //SENDING TO PHP
             String fname = "login.txt";
-            String url = "http://kanikabhatia-photos.com/Team_File_Share/userlogin.php?fname=" + fname;
+            String url = "http://kanikabhatia-photos.com/Team_File_Share/userlogin.php?emailid=" + emailid + "&password=" + password;
             HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
             httpUrlConnection.setDoOutput(true);
             httpUrlConnection.setRequestMethod("POST");
             OutputStream os = httpUrlConnection.getOutputStream();
-            File fileRead = new File(fileName);
-            int bytes = (int) fileRead.length();
-            BufferedInputStream fos = new BufferedInputStream(new FileInputStream(fileName));
-            for (int j = 0; j < bytes; j++) {
-                os.write(fos.read());
-            }
-            os.close();
-            //CLOSED
+           
             BufferedReader in = new BufferedReader(new InputStreamReader(httpUrlConnection.getInputStream()));
             String s = null;
             while ((s = in.readLine()) != null) {
@@ -67,43 +51,41 @@ public class functions {
         } catch (IOException ex) {
             //Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(Integer.parseInt(ret) != 0)
+        if(Integer.parseInt(ret) == 1)
         {
-            userid = username;
+            userid = emailid;
         }
-        return Integer.parseInt(ret);
+       return Integer.parseInt(ret);
     }
 
     protected String userRegistration(String data) {
         String retData = "";
         try {
-            String fileName = "C:\\Temp\\register.txt";
-            File file = new File(fileName);
-            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
-            bw.write(data);
-            bw.close();
-            // CLOSED
-            //READING THE FILE AND SENDING TO PHP
-            String fname = "register.txt";
+            String array[] = data.split(",,");
+            String firstname = array[0];
+            String lastname = array[1];
+            String emailid = array[2];
+            String password = array[3];
+            System.out.println("firstname "+firstname);
             //String url = "http://kanikabhatia-photos.com/Team_File_Share/register.php?fname=" + fname;
-            String url = "http://kanikabhatia-photos.com/Team_File_Share/registration1.php?fname=" + fname;
+            String url = "http://kanikabhatia-photos.com/Team_File_Share/reg2.php?firstname=" + firstname + "&lastname=" + lastname + "&emailid=" + emailid +  "&password=" + password;
             HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
             httpUrlConnection.setDoOutput(true);
             httpUrlConnection.setRequestMethod("POST");
             OutputStream os = httpUrlConnection.getOutputStream();
-            File fileRead = new File(fileName);
+            /*File fileRead = new File(fileName);
             int bytes = (int) fileRead.length();
             BufferedInputStream fos = new BufferedInputStream(new FileInputStream(fileName));
             for (int j = 0; j < bytes; j++) {
                 os.write(fos.read());
             }
-            os.close();
+            os.close();*/
             BufferedReader in = new BufferedReader(new InputStreamReader(httpUrlConnection.getInputStream()));
             String s = null;
             while ((s = in.readLine()) != null) {
-                if (s.contains("Error")) {
+                if (s.equals("Error")) {
                     retData = s;
-                } else if (s.contains("Success")) {
+                } else if (s.equals("Success")) {
                     retData = s;
                 }
             }
@@ -119,10 +101,8 @@ public class functions {
         try {
             String filePath = path;
             String fileName = fname;
-            //fileName = fileName+"..."+userid;
-            //fileName = fileName+".."+"kanika";
             //String url = "http://kanikabhatia-photos.com/Team_File_Share/uploads/fileUpload.php?fname=" + fileName;
-            String url = "http://kanikabhatia-photos.com/Team_File_Share/tempfileupload.php?fname=" + fileName;
+            String url = "http://kanikabhatia-photos.com/Team_File_Share/tempfileupload.php?fname=" + fileName + "&userid=" + userid;
             HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
             httpUrlConnection.setDoOutput(true);
             httpUrlConnection.setRequestMethod("POST");
@@ -150,6 +130,38 @@ public class functions {
         }
         return retData;
     }
+
+    protected String filelist()
+    {
+        String ret = "";
+        try {
+            //String url = "http://kanikabhatia-photos.com/Team_File_Share/uploads/fileUpload.php?fname=" + fileName;
+            String url = "http://kanikabhatia-photos.com/Team_File_Share/tempfilelist.php?userid="+ userid;
+            //to be removed later" kanika
+            url = "http://kanikabhatia-photos.com/Team_File_Share/tempfilelist.php?userid="+ "kanika@test.com";
+            HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
+            httpUrlConnection.setDoOutput(true);
+            httpUrlConnection.setRequestMethod("POST");
+            OutputStream os = httpUrlConnection.getOutputStream();
+            BufferedReader in = new BufferedReader(new InputStreamReader(httpUrlConnection.getInputStream()));
+            String s = "";
+            while ((s = in.readLine()) != null) {
+                ret = ret +s;
+                System.out.println(s);
+            }
+            in.close();
+            
+        } catch (MalformedURLException ex) {
+            System.out.println("Error here");
+            Logger.getLogger(functions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            System.out.println("Error there");
+            Logger.getLogger(functions.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("ret:"+ret);
+        return ret;
+    }
+
+}
     
    
-}

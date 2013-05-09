@@ -25,10 +25,10 @@ public class Registration extends javax.swing.JFrame {
         initComponents();
     }
 
-/*    public void init() {
-        initComponents();
-    }
-*/
+    /*    public void init() {
+     initComponents();
+     }
+     */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -353,16 +353,13 @@ public class Registration extends javax.swing.JFrame {
         if (data.equalsIgnoreCase("success")) {
             data = readData();
             String response = f.userRegistration(data);
-            //if(response.contains("Error"))
-          //  {
-            //    JOptionPane.showMessageDialog(this, response, "Registration", JOptionPane.ERROR_MESSAGE);
-            //}
-//            else
-  //          {
-                JOptionPane.showMessageDialog(this, "Confirmation Email has been sent to your account. Click on the link to activate your account", "Registration", JOptionPane.INFORMATION_MESSAGE);
+            if (response.contains("Error")) {
+                JOptionPane.showMessageDialog(this, "Account Already Exists.", "Registration", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Confirmation Email has been sent to your account. \n Click on the link to activate your account", "Registration", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
                 new login();
-    //        }
+            }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -371,12 +368,10 @@ public class Registration extends javax.swing.JFrame {
         String username = jTextField1.getText();
         String password = new String(jPasswordField1.getPassword());
         int result = f.userLogin(username, password);
-        System.out.println("count is"+result);
+        System.out.println("count is" + result);
         if (result == 0) {
             jLabel11.setText("Login Failed.");
-        }
-        else
-        {
+        } else {
             dispose();
             new home();
             //kanika code 

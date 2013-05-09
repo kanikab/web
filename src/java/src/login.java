@@ -215,7 +215,6 @@ public class login extends javax.swing.JFrame {
         } else {
             int result = f.userLogin(username, password);
             if (result == 0) {
-                System.out.println("error");
                 jLabel4.setText("Login Failed.");
             } else {
                 dispose();
