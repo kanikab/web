@@ -4,9 +4,13 @@
  */
 package src;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -251,7 +255,22 @@ public class home extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        jLabel4.setVisible(false);
+       
+       
+       
+       
+       
+       
+       
+       
+       
+        
+        
+        
+        
+        
+        
+        
         
     }//GEN-LAST:event_jButton3ActionPerformed
 

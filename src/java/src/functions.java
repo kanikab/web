@@ -103,6 +103,7 @@ public class functions {
             String fileName = fname;
             //String url = "http://kanikabhatia-photos.com/Team_File_Share/uploads/fileUpload.php?fname=" + fileName;
             String url = "http://kanikabhatia-photos.com/Team_File_Share/tempfileupload.php?fname=" + fileName + "&userid=" + userid;
+            url = "http://kanikabhatia-photos.com/Team_File_Share/uploads/tempfileupload.php?fname=" + fileName + "&userid=" + "kanika@test.com";
             HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
             httpUrlConnection.setDoOutput(true);
             httpUrlConnection.setRequestMethod("POST");
@@ -147,7 +148,7 @@ public class functions {
             String s = "";
             while ((s = in.readLine()) != null) {
                 ret = ret +s;
-                System.out.println(s);
+                //System.out.println(s);
             }
             in.close();
             
@@ -158,10 +159,42 @@ public class functions {
             System.out.println("Error there");
             Logger.getLogger(functions.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("ret:"+ret);
+        //System.out.println("ret:"+ret);
         return ret;
     }
 
+   protected String[] fileDownload()
+   {
+       String filelist = filelist();
+       System.out.println("filelist: "+filelist);
+       String[] userRequestedFileName = filelist.split(",");
+       System.out.println("Array"+userRequestedFileName);
+     
+        /*try {
+            //String url = "http://kanikabhatia-photos.com/Team_File_Share/uploads/fileUpload.php?fname=" + fileName;
+            String url = "http://kanikabhatia-photos.com/Team_File_Share/tempfiledownload.php?userid="+ userid +"&filename="+userRequestedFileName;
+            //to be removed later
+            url = "http://kanikabhatia-photos.com/Team_File_Share/uploads/tempfiledownload.php?userid="+ "kanika@test.com" +"&filename="+"test.html";
+            HttpURLConnection httpUrlConnection = (HttpURLConnection) new URL(url).openConnection();
+            httpUrlConnection.setDoOutput(true);
+            httpUrlConnection.setRequestMethod("POST");
+            OutputStream os = httpUrlConnection.getOutputStream();
+            BufferedReader in = new BufferedReader(new InputStreamReader(httpUrlConnection.getInputStream()));
+            String s = "";
+            while ((s = in.readLine()) != null) {
+                System.out.println(s);
+            }
+            in.close();
+            
+        } catch (MalformedURLException ex) {
+            System.out.println("Error here");
+            Logger.getLogger(functions.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            System.out.println("Error there");
+            Logger.getLogger(functions.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        return userRequestedFileName;
+   }
 }
     
    
