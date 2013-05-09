@@ -118,7 +118,6 @@ public class filedownload extends javax.swing.JFrame {
         File file = new File(filename);
         final JFileChooser filesave = new JFileChooser();
         int returnVal = filesave.showSaveDialog(this);
-        System.out.println("return value is "+returnVal);
         if (returnVal == JFileChooser.APPROVE_OPTION)
         {
             filesave.setSelectedFile(file);
