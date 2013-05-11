@@ -26,7 +26,6 @@ public class home extends javax.swing.JFrame {
          setVisible(true);
         initComponents();
         jLabel4.setVisible(false);
-        jTextArea1.setBorder(null);
     }
 
     /**
@@ -49,8 +48,8 @@ public class home extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,15 +117,16 @@ public class home extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
         jLabel4.setText("List of Uploaded Files");
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
-        jTextArea1.setRows(9);
-        jTextArea1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        jTextArea1.setOpaque(false);
-        jScrollPane1.setViewportView(jTextArea1);
+        jList1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jList1.setAlignmentX(0.0F);
+        jList1.setAlignmentY(0.0F);
+        jList1.setCellRenderer(null);
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jList1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -157,9 +157,9 @@ public class home extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -182,8 +182,9 @@ public class home extends javax.swing.JFrame {
                             .addComponent(jButton5))))
                 .addGap(67, 67, 67)
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(212, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -247,30 +248,34 @@ public class home extends javax.swing.JFrame {
        String filelist = "";
        filelist = f.filelist();
        String[] flist = filelist.split(",");
+       int t =0;
        for(int i = 0; i< flist.length; i++)
-       {
+       {  
+           t =  flist[i].indexOf("_");
+           flist[i] = flist[i].substring(t+1, flist[i].length());
            filelist = flist[i] +"\n";
        }
+       jList1.setListData(flist);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-       
-       
-       
-       
-       
-       
-       
-       
-       
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -285,6 +290,12 @@ public class home extends javax.swing.JFrame {
         // TODO add your handling code here:
         jLabel4.setVisible(false);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        // TODO add your handling code here:
+        String file = jList1.getSelectedValue().toString();
+        System.out.println("selected file is"+file);
+    }//GEN-LAST:event_jList1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -330,9 +341,9 @@ public class home extends javax.swing.JFrame {
     protected javax.swing.JButton jButton7;
     protected javax.swing.JLabel jLabel1;
     protected javax.swing.JLabel jLabel4;
+    protected javax.swing.JList jList1;
     protected javax.swing.JPanel jPanel1;
     protected javax.swing.JPanel jPanel2;
-    protected javax.swing.JScrollPane jScrollPane1;
-    protected javax.swing.JTextArea jTextArea1;
+    protected javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

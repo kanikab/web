@@ -17,14 +17,25 @@ public class filedownload extends javax.swing.JFrame {
      * Creates new form filedownload
      */
     functions f = new functions();
-    String file;
-    String[] filelist;
+    String file = null;
+    String[] filelist = null;
+    String[] flist = null;
+
     public filedownload() {
         initComponents();
         setTitle("File Save");
         file = f.filelist();
+        //file = "2_ffdd,2_dsfdg,2_dfgdfdf,fdgdfg,dfgdfgd,dfgfdfg";
+        flist = file.split(",");
+        System.out.println("length is" + flist.length);
         filelist = file.split(",");
+        for (int i = 0; i < flist.length; i++) {
+            int t = flist[i].indexOf("_");
+            filelist[i] = flist[i].substring(t + 1, flist[i].length());
+        }
+
         jList1.setListData(filelist);
+        jButton1.setEnabled(false);
     }
 
     /**
@@ -42,6 +53,7 @@ public class filedownload extends javax.swing.JFrame {
         jList1 = new javax.swing.JList();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +63,11 @@ public class filedownload extends javax.swing.JFrame {
         jLabel1.setText("Select the file to download");
 
         jList1.setFont(new java.awt.Font("Georgia", 0, 12)); // NOI18N
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jButton1.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
@@ -62,6 +79,14 @@ public class filedownload extends javax.swing.JFrame {
         });
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/bck.jpg"))); // NOI18N
+
+        jButton2.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jButton2.setText("Cancel");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -78,7 +103,9 @@ public class filedownload extends javax.swing.JFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(115, 115, 115)
-                                .addComponent(jButton1)))
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(102, 102, 102)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 20, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -91,11 +118,14 @@ public class filedownload extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(75, 75, 75)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                .addComponent(jLabel2))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -114,15 +144,31 @@ public class filedownload extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String filename = jList1.getSelectedValue().toString();
-        File file = new File(filename);
-        final JFileChooser filesave = new JFileChooser();
-        int returnVal = filesave.showSaveDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION)
+        Object[] filename = jList1.getSelectedValues();
+        String filen;
+        for(int i = 0; i <filename.length;i++)
         {
-            filesave.setSelectedFile(file);
+            filen = filename[i].toString();
+            System.out.println(filen);
         }
+        System.out.println(filename);
+       /*System.out.println("Unsuccessful");
+        f.fileDownload();
+        System.out.println("Successful");*/
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+    // TODO add your handling code here:   
+        if(jList1.isSelectionEmpty())
+            jButton1.setEnabled(false);
+        else
+            jButton1.setEnabled(true);
+    }//GEN-LAST:event_jList1MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +206,7 @@ public class filedownload extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton jButton1;
+    protected javax.swing.JButton jButton2;
     protected javax.swing.JLabel jLabel1;
     protected javax.swing.JLabel jLabel2;
     protected javax.swing.JList jList1;
