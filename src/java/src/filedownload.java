@@ -145,11 +145,11 @@ public class filedownload extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Object[] filename = jList1.getSelectedValues();
-        String filen;
+        String[] filen = null ;
         for(int i = 0; i <filename.length;i++)
         {
-            filen = filename[i].toString();
-            System.out.println(filen);
+            filen[i] = filename[i].toString();
+            System.out.println(filen[i]);
         }
         System.out.println(filename);
        /*System.out.println("Unsuccessful");
